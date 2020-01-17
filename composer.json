@@ -1,0 +1,19 @@
+{
+    "name": "netbeans/calculator-phpunit",
+    "description": "Simple project using PHPUnit.",
+    "authors": [
+        {
+            "name": "NetBeans",
+            "email": "test@gmail.com"
+        }
+    ],
+    "require": {
+        "codeception/codeception": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.*"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}

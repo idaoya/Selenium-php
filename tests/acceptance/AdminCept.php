@@ -1,0 +1,172 @@
+<?php
+
+require_once 'inc/Utility.php';
+require_once 'inc/Authen.php';
+
+function testAppConfig($I) {
+    $I->am(Utility::ROLE_AUTHEN);
+    $I->wantTo('show detail appconfig menu');
+    $I->amGoingTo(Utility::ADMIN_PAGE);
+    $I->amOnPage(Utility::URL_ADMIN);
+    $I->dontSee('Settings on company level');
+    $I->dontSee('Settings on application level');
+    $I->dontSee('company', 'h3');
+    $I->dontSee('upload', 'h3');
+    $I->dontSee('review', 'h3');
+    $I->dontSee('compliance', 'h3');
+    $I->dontSee('library', 'h3');
+    $I->dontSee('sport', 'h3');
+    $I->dontSee('admin', 'h3');
+    $I->dontSee('tracking', 'h3');
+    $I->see('appconfig');
+    $I->click('#adminMenuElementAppconfig');
+    $I->expectTo('see information');
+    $I->see('Settings on company level');
+    $I->see('Settings on application level');
+    $I->see('company', 'h3');
+    $I->see('upload', 'h3');
+    $I->see('review', 'h3');
+    $I->see('compliance', 'h3');
+    $I->see('library', 'h3');
+    $I->see('sport', 'h3');
+    $I->see('admin', 'h3');
+    $I->see('tracking', 'h3');
+    $I->click('#accordionHeader-company');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-company');
+    $I->wait(1);
+    $I->click('#accordionHeader-upload');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-upload');
+    $I->wait(1);
+    $I->click('#accordionHeader-review');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-review');
+    $I->wait(1);
+    $I->click('#accordionHeader-compliance');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-compliance');
+    $I->wait(1);
+    $I->click('#accordionHeader-library');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-library');
+    $I->wait(1);
+    $I->click('#accordionHeader-sport');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-sport');
+    $I->wait(1);
+    $I->click('#accordionHeader-admin');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 6);
+    $I->click('#accordionHeader-admin');
+    $I->wait(1);
+    $I->click('#accordionHeader-tracking');
+    $I->seeLink('Configuration name');
+    $I->seeLink('Configuration value');
+    $I->see('Action');
+    $I->seeNumberOfElements('th', 3);
+    $I->seeNumberOfElements('tr', 3);
+    $I->click('#accordionHeader-tracking');    
+}
+
+function testGroupConfig($I) {
+    $I->am(Utility::ROLE_AUTHEN);
+    $I->wantTo('show detail groupconfig menu');
+    $I->amGoingTo(Utility::ADMIN_PAGE);
+    $I->amOnPage(Utility::URL_ADMIN);
+    $I->see('groupconfig');
+    $I->click('#adminMenuElementGroupconfig');
+    $I->expectTo('do not see information');
+}
+
+function testSchedules($I) {
+    $I->am(Utility::ROLE_AUTHEN);
+    $I->wantTo('show detail schedules menu');
+    $I->amGoingTo(Utility::ADMIN_PAGE);
+    $I->amOnPage(Utility::URL_ADMIN);
+    $I->dontSee('Schedules, rules and storage configuration', 'h3');
+    $I->dontSee('Configure Storage integrations...');
+    $I->dontSee('Edit rules...');
+    $I->dontSee('Setup schedules...');
+    $I->see('schedules');
+    $I->click('#topBannerMenuElementSchedules');
+    $I->expectTo('see information');
+    $I->see('Schedules, rules and storage configuration', 'h3');
+    $I->see('Configure Storage integrations...');
+    $I->see('Edit rules...');
+    $I->see('Setup schedules...');
+    $I->click('Configure Storage integrations...');
+    $I->wait(1);
+    $I->see('Configure Storage Integrations for Media Netwerk AS', 'h3');
+    $I->see('Choose a stored configuration');
+    $I->see('Name');
+    $I->see('Type');
+    $I->see('Provider');
+    $I->see('Host [ip address]');
+    $I->see('Access key [username]');
+    $I->see('Secret key [password]');
+    $I->see('Region');
+    $I->see('Bucket name [Remote path]');
+    $I->see('Object transition days');
+    $I->see('Prefix');
+    $I->see('Mount point (Archive only)');
+    $I->see('Only for FTP/SCP');
+    $I->see('Leave at 0');
+    $I->see('Leave empty');
+    $I->see('normally /mnt/archive/');
+    $I->selectOption('configname', 'Media Netwerk Default Backup S3');
+    $I->click('Save');     
+    $I->wait(1);
+}
+
+function testHelp($I) {
+    $I->am(Utility::ROLE_AUTHEN);
+    $I->wantTo('show detail help menu');
+    $I->amGoingTo(Utility::ADMIN_PAGE);
+    $I->dontSee('Documentation');
+    $I->dontSee("What's new?");
+    $I->dontSee('Show tooltips');
+    $I->see('Help');
+    $I->click('#topBannerMenuElementHelp');
+    $I->expectTo('see information');
+    $I->see('Documentation');
+    $I->see("What's new?");
+    $I->see('Show tooltips');
+    $I->wait(1);
+}
+
+$I = new AcceptanceTester($scenario);
+
+Authen::testSignin($I);
+testAppConfig($I);
+testGroupConfig($I);
+testSchedules($I);
+testHelp($I);
+Authen::testSignout($I);

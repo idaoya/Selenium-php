@@ -1,0 +1,19 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver
+#        - WebHelper
+    config:
+        WebDriver:           
+             url: 'http://localhost/thaimedia'
+             browser: 'firefox'
+             window_size: maximize
+             delay  : 1050
+             clear_cookies: true
+             wait: 1s
+             capabilities:
+                          webStorageEnabled: true
+
+
+
+ 
